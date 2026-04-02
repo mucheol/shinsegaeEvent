@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shinsegae DFS Event</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="roulette.css">
+  <link rel="stylesheet" href="ladder.css">
+  <link rel="stylesheet" href="slot.css">
+</head>
+<body>
+
+  <div class="nav">
+    <button class="nav-btn active" data-page="1">1</button>
+    <button class="nav-btn " data-page="2">2</button>
+    <button class="nav-btn" data-page="3">3</button>
+  </div>
+
+  <div class="layout">
+
+    <!-- Page 1: 룰렛 -->
+    <section class="roulette" id="roulette">
+      <h2 class="page-title">룰렛</h2>
+      <p class="page-desc">버튼을 눌러 룰렛을 돌리고 당첨 혜택을 확인하세요</p>
+      <div class="event-area" id="roulette-area">
+        <img src="./images/roulette_background.png" class="roulette-bg" alt="배경">
+        <img src="./images/roulette.png" id="wheel-img" alt="룰렛">
+        <img src="./images/roulette_pointer.png" id="roulette-pointer" alt="포인터">
+        <div class="result-modal" id="roulette-modal">
+          <div class="modal-box">
+            <p class="modal-text" id="roulette-modal-text">결과</p>
+            <button class="modal-close" id="roulette-modal-close">닫기</button>
+          </div>
+        </div>
+      </div>
+      <div class="btn-area">
+        <button class="event-btn" id="roulette-btn">START</button>
+        <!-- RESET은 포트폴리오용 / 실제로는 제거 -->
+        <button class="event-btn" id="roulette-reset-btn">RESET</button>
+      </div>
+    </section>
+
+    <!-- Page 2: 사다리타기 -->
+    <section class="ladder hidden" id="ladder">
+      <h2 class="page-title">사다리타기</h2>
+      <p class="page-desc">동물을 선택하고 사다리를 타서 당첨 결과를 확인하세요</p>
+      <div class="event-area" id="ladder-area">
+        <img src="./images/ladder_background.png" class="ladder-bg" alt="배경">
+
+        <div class="ladder-top-objs">
+          <label for="player-1"><span class="ladder-obj"></label>
+          <label for="player-2"><span class="ladder-obj"></label>
+          <label for="player-3"><span class="ladder-obj"></label>
+          <label for="player-4"><span class="ladder-obj"></label>
+          <label for="player-5"><span class="ladder-obj"></label>
+          <label for="player-6"><span class="ladder-obj"></label>
+        </div>
+        <div class="ladder-top-radios">
+          <input type="radio" name="ladder-player" value="1" id="player-1">
+          <input type="radio" name="ladder-player" value="2" id="player-2">
+          <input type="radio" name="ladder-player" value="3" id="player-3">
+          <input type="radio" name="ladder-player" value="4" id="player-4">
+          <input type="radio" name="ladder-player" value="5" id="player-5">
+          <input type="radio" name="ladder-player" value="6" id="player-6">
+        </div>
+        
+        <div class="ladder-mystery">
+          <span class="ladder-mystery-q">?</span>
+          <span class="ladder-mystery-hint">동물을 선택해주세요</span>
+        </div>
+
+        <!-- 피그마에서 SVG로 선을 따와서 그리는 듯한 모습 표현 -->
+        <svg class="ladder-svg" viewBox="0 0 325 341" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2.5 2.5V44H67L67.5 85H129.5V137.5H194V154H257.5V170H322V279.5H257.5V317H194V338.5" stroke="#FFE100" stroke-width="7" stroke-linecap="round" fill="none" id="path-1"/>
+          <path d="M68.0162 3.5V44H3.51616L4.01616 152.5H68.0162V171H130.516V242H195.016V264.5H259.016V280H323.016V340" stroke="#FF0000" stroke-width="7" stroke-linecap="round" fill="none" id="path-2"/>
+          <path d="M130.5 5.5V63H195V123.5H258V154.5H195V206H258V264.5H195V317.5H258V342" stroke="#00FF2F" stroke-width="7" stroke-linecap="round" fill="none" id="path-3"/>
+          <path d="M195 3.5V62H130.5V84H68V151.5H3.5V213H68V257.5H130.5V285H68V299.5H3.5V336" stroke="#0048FF" stroke-width="7" stroke-linecap="round" fill="none" id="path-4"/>
+          <path d="M258 4.5V21.5H322.5V83.5H258V121.5H194.5V136H130V169.5H67.5V213H3.5V299.5H67.5V335.5" stroke="#B700FF" stroke-width="7" stroke-linecap="round" fill="none" id="path-5"/>
+          <path d="M323 5.5V23H258.5V85H323V169.5H258.5V206H195V242H131V259H68.5V286.5H131V338" stroke="#FF6A00" stroke-width="7" stroke-linecap="round" fill="none" id="path-6"/>
+        </svg>
+
+        <div class="result-modal" id="ladder-modal">
+          <div class="modal-box">
+            <p class="modal-text" id="ladder-modal-text">결과</p>
+            <button class="modal-close" id="ladder-modal-close">닫기</button>
+          </div>
+        </div>
+      </div>
+      <div class="btn-area">
+        <button class="event-btn" id="ladder-btn">START</button>
+        <!-- RESET은 포트폴리오용 / 실제로는 제거 -->
+        <button class="event-btn" id="ladder-reset-btn">RESET</button>
+      </div>
+    </section>
+
+    <!-- Page 3: 슬롯머신 -->
+    <section class="slot hidden" id="slot">
+      <h2 class="page-title">슬롯머신</h2>
+      <p class="page-desc">버튼을 눌러 슬롯을 돌리고 숫자를 맞춰 쿠폰을 받으세요</p>
+      <div class="event-area" id="slot-area">
+        <p class="slot-guide">숫자 칸 중 하나에<br/> <strong>1</strong> 또는 <strong>5</strong>가 나오면 할인쿠폰 증정!</p>
+        <div class="slot-machine">
+
+          <div class="slot-window" data-slot="0">
+            <div class="slot-reel">
+              <!-- JS에서 .slot-item 동적 생성 -->
+            </div>
+          </div>
+          <div class="slot-window" data-slot="1">
+            <div class="slot-reel">
+              <!-- JS에서 .slot-item 동적 생성 -->
+            </div>
+          </div>
+          <div class="slot-window" data-slot="2">
+            <div class="slot-reel">
+              <!-- JS에서 .slot-item 동적 생성 -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 결과 모달 -->
+        <div class="result-modal" id="slot-modal">
+          <div class="modal-box">
+            <p class="modal-text" id="slot-modal-text">결과</p>
+            <button class="modal-close" id="slot-modal-close">닫기</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="btn-area">
+        <button class="event-btn" id="slot-btn">START</button>
+        <!-- RESET은 포트폴리오용 / 실제로는 제거 -->
+        <button class="event-btn" id="slot-reset-btn">RESET</button>
+      </div>
+    </section>
+
+    <!-- Code Viewer -->
+    <aside class="code-viewer" id="code-viewer">
+      <div class="code-tabs">
+        <button class="code-tab active" data-tab="html">HTML</button>
+        <button class="code-tab" data-tab="css">CSS</button>
+        <button class="code-tab" data-tab="common">공통CSS</button>
+        <button class="code-tab" data-tab="js">JS</button>
+      </div>
+      <div class="code-panel" id="code-panel">
+        <pre><code id="code-display" class="language-html"></code></pre>
+      </div>
+    </aside>
+
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="main.js"></script>
+  <script src="roulette.js"></script>
+  <script src="ladder.js"></script>
+  <script src="slot.js"></script>
+</body>
+</html>
